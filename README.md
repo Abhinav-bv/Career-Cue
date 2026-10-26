@@ -49,6 +49,8 @@ npm test
 
 The smoke test uses a temporary database and checks login, booking, conflict handling, role permissions, completion, and feedback.
 
+To customize the interface or data, see [Editing CareerCue](EDITING_GUIDE.md).
+
 ## Course project
 
 Software Engineering (IT_3131), V Semester, CSE Data Science. The project report is distributed separately from this source repository.
