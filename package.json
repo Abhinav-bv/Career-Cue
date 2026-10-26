@@ -1,0 +1,9 @@
+{
+  "name": "careercue",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Peer mock interview and feedback platform",
+  "scripts": { "start": "node server.js", "test": "node tests/smoke.js" },
+  "engines": { "node": ">=20" }
+}
+
