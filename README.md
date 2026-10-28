@@ -14,24 +14,32 @@ npm start
 
 Open http://localhost:3000.
 
-| Role | Email | Password |
+| Role | User ID | Password |
 | --- | --- | --- |
-| Candidate | candidate@careercue.demo | Demo123! |
-| Interviewer | interviewer@careercue.demo | Demo123! |
+| Interviewee (Aarav) | CC1001 | Demo123! |
+| Interviewer (Nisha) | CC2001 | Demo123! |
+| Interviewer (Kabir) | CC2002 | Demo123! |
+
+Select the matching role on the login page. The demo buttons fill the credentials; press Sign in to continue. Existing local data is upgraded automatically to user IDs without removing bookings or feedback.
 
 Demo data is created automatically in `data/careercue.json` on the first request. To reset the demo, stop the server and delete that file.
 
 ## Demo walkthrough
 
-1. Sign in as the candidate and book an available Software Engineering slot.
-2. Sign out and sign in as the interviewer.
-3. Open My sessions, review suggested questions, save interviewer notes, mark the interview complete, and enter scores and written feedback.
-4. Sign back in as the candidate to see the feedback and progress dashboard.
+1. Sign in as interviewer CC2001 and open Manage slots. Publish three future slots with a duration and break.
+2. Sign in as interviewee CC1001, open Find interviews, filter by topic, and book one of those slots.
+3. Open My sessions, cancel that booking, and show its Cancelled history. Book the reopened slot again.
+4. Sign back in as CC2001. Open My sessions, review suggested questions, save private notes, and mark the demo interview complete. Open Completed and submit ratings and written feedback.
+5. Sign back in as CC1001 and show My progress. Read DEMO_GUIDE.txt for a presentation script and viva preparation.
 
 ## Features
 
-- Role-based candidate and interviewer views
-- Open interview slots, booking, and duplicate-booking prevention
+- User ID and password login with role-specific interviewee and interviewer views
+- Bulk scheduling of 1–8 one-to-one slots, 15–60 minute duration, and configurable breaks
+- Topic/status filters and more seeded slots across several days
+- Booking, concurrent duplicate-booking prevention, and interviewee schedule conflict checks
+- Booking cancellation with confirmation, reopened availability, and cancellation history
+- Owner-only slot cancellation that also cancels affected scheduled bookings
 - Interview completion and structured feedback
 - Interview preparation prompts and saved interviewer notes
 - Candidate progress averages and session history
@@ -47,7 +55,7 @@ The frontend uses HTML, CSS, and browser JavaScript. The server uses only Node.j
 npm test
 ```
 
-The smoke test uses a temporary database and checks login, booking, conflict handling, role permissions, completion, and feedback.
+The smoke test uses a temporary database and checks user ID login, role permissions, bulk scheduling, interval overlap checks, atomic rejection of conflicting batches, concurrent booking, cancellation, completion, feedback, saved data, and migration of existing data.
 
 To customize the interface or data, see [Editing CareerCue](EDITING_GUIDE.md).
 
