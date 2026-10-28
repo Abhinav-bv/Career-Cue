@@ -1,0 +1,80 @@
+CAREERCUE — TEACHER DEMO GUIDE
+Software Engineering (IT_3131) | Individual project by Abhinav Besta
+
+OPENING (20 seconds)
+“CareerCue is a peer mock interview and feedback platform. Students often arrange practice through messages, which makes availability and feedback hard to track. My application brings scheduling, booking, cancellation, interview preparation and feedback into one workflow.”
+
+BEFORE THE DEMO
+Start the project with npm start and open http://localhost:3000.
+Choose Interviewer and use CC2001 / Demo123! for Nisha.
+Choose Interviewee and use CC1001 / Demo123! for Aarav.
+CC2002 / Demo123! is a second interviewer, Kabir, if needed.
+Pick a future date and a time with no existing slots. Use one browser and sign out between roles. The demo buttons fill credentials; click Sign in afterward.
+
+LIVE WALKTHROUGH (about 5–7 minutes)
+
+1. Explain the login page.
+Show the two roles, user ID field and show/hide password control.
+Say: “The server verifies the ID, password and selected role. Interviewees cannot create slots or submit interviewer feedback.”
+Optional: enter an incorrect password once to demonstrate validation.
+
+2. Create availability as interviewer CC2001.
+Open Manage slots. Choose a future date, Software Engineering, 30 minutes, 3 slots and a 15-minute break. Read the preview and publish.
+Say: “This creates three separate one-to-one interviews, not a group class. Each has one available place.”
+Show the published times. Try the same start time again to show overlap rejection: no partial batch is saved.
+
+3. Book as interviewee CC1001.
+Sign out, switch roles and sign in. Open Find interviews, select Software Engineering and locate the slots you just created with Nisha.
+Book one and add a goal, such as “Explain my final-year project clearly.” Open My sessions.
+Say: “The server checks availability and also prevents me from booking overlapping interviews, even with different interviewers.”
+
+4. Demonstrate cancellation.
+Click Cancel interview, read the confirmation, and choose Yes, cancel interview. Open Cancelled to show the record.
+Return to Find interviews and book the reopened slot.
+Say: “Cancelling a booking preserves its history and makes the slot available again.”
+Optional interviewer example: an interviewer can cancel one of their published slots. If it has a scheduled booking, that booking is cancelled too and the slot is removed from available choices.
+
+5. Complete and evaluate as CC2001.
+Open My sessions and choose Interview prep for the newly booked session. Show suggested questions and save a short private note.
+Say: “The actual interview takes place in person or on a separately arranged call. For this demonstration, I will simulate completing it.”
+Click Complete, open Completed, and click Give feedback. Enter scores and specific written feedback.
+Example strength: “Explained the requirements and application workflow clearly.”
+Example improvement: “Explain one validation rule with a concrete input example.”
+
+6. Show the result as CC1001.
+Open My progress and show the scores and saved advice. Refresh once to demonstrate that feedback persists.
+Say: “The scores summarize peer feedback. Interviewer preparation notes are private and are not returned to the interviewee.”
+
+SDLC EXPLANATION (about 45 seconds)
+“I followed an iterative SDLC. I started with the course requirements and the interviewee and interviewer journeys. I wrote functional requirements and acceptance criteria, then designed the UML diagrams, data flow and application structure. I implemented the browser interface, Node.js server and JSON storage. I tested both successful workflows and failure cases. Review led to this iteration: clearer user ID login, bulk scheduling and more visible cancellation. I packaged the application with run instructions and maintain the source on GitHub.”
+
+Evidence to point to:
+- Requirements: login, slot creation, booking, cancellation, feedback and progress.
+- Design: UML use case, sequence and activity models; DFD and architecture in the report.
+- Implementation: public/app.js, public/styles.css and server.js.
+- Testing: npm test; tests/smoke.js verifies authorization, overlaps, concurrent booking, cancellation and saved feedback.
+- Delivery and maintenance: README, project ZIP, GitHub and recorded limitations.
+
+SHORT VIVA ANSWERS
+
+What is the architecture?
+The browser sends HTTP requests to a Node.js server. The server validates requests, checks the user's session and role, and saves structured data in a local JSON file.
+
+Why is this end to end?
+A real action in the interface changes server data. The other role can then see the resulting booking or feedback. It is more than a collection of static screens.
+
+How are passwords protected?
+Passwords are stored as salted scrypt hashes. The browser receives a session cookie after a successful login. Server endpoints enforce permissions.
+
+How do you prevent conflicting slots?
+I compare the start and end time of each proposed slot with existing active slots. If any slot conflicts, the entire proposed batch is rejected. Bookings also check whether the interviewee already has a scheduled interview during that interval.
+
+Why JSON instead of a database?
+It keeps an individual local demonstration easy to run. The current application uses one server process. A production version should use a relational database with transactions and uniqueness constraints.
+
+What are the limitations?
+Prepared accounts, local storage, sessions that end when the server restarts, and no integrated video or email notifications. Completion is an interviewer action, so it can be demonstrated without waiting for a scheduled time. This is a coursework prototype rather than a production deployment.
+
+PRESENTATION CHECKLIST
+Rehearse once with the exact accounts. Use slots owned by Nisha when demonstrating with CC2001. Explain validation and limitations honestly. Keep the report open at the SDLC and diagrams. The earlier report predates this iteration: mention the updated user ID login, bulk slots and cancellation features when discussing the changes. No demo can guarantee full marks; clear evidence and your own understanding are what you can control.
+
