@@ -10,7 +10,7 @@ The project uses plain HTML, CSS, and JavaScript. No build step or package insta
 | Screen text, cards, booking form, question prompts, and frontend behavior | `public/app.js` |
 | Browser title and the HTML entry page | `public/index.html` |
 | Login, booking, feedback, roles, and data rules | `server.js` |
-| Demo accounts and initial interview slots | `seed()` in `server.js` |
+| Demo accounts, user IDs and initial interview slots | `seed()` and `migrate()` in `server.js` |
 
 ## See changes locally
 
@@ -23,4 +23,6 @@ The project uses plain HTML, CSS, and JavaScript. No build step or package insta
 Demo data is stored in `data/careercue.json`. If you need a fresh demo, stop the server and delete this file. The app recreates the sample accounts and slots on the next request. This also removes any bookings and feedback you entered locally.
 
 Run `npm test` after changing booking, feedback, or authorization logic.
+
+The login uses assigned user IDs (`CC1001`, `CC2001`, `CC2002`). The scheduling form supports 1–8 slots, 15/30/45/60-minute duration and 0/15/30-minute breaks. Keep the frontend choices and server validation consistent when editing these options. Existing saved data is upgraded once through `migrate()` without resetting booking history.
 
